@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import AppRoutes from "./routes/routes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import { Navbar, Sidebar } from "./components";
+import { motion } from "framer-motion";
+import { slideIn } from "./data/dummy";
+
+import { useStateContext } from "./contexts/ContextProvider";
+
+const App = () => {
+    const { activeMenu, currentMode } = useStateContext();
+
+    return (
+        <div
+            className={
+                localStorage.getItem("themeMode") === "dark" ? "dark" : ""
+            }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+            <div className="flex relative dark:bg-main-dark-bg">
+                <aside
+                    className="fixed sidebar dark:bg-secondary-dark-bg bg-white overflow-hidden transition-all ease-in-out duration-150"
+                    style={activeMenu ? { width: "18rem" } : { width: "0" }}
+                >
+                    <Sidebar />
+                </aside>
+
+                <div
+                    className={
+                        activeMenu
+                            ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full relative "
+                            : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 relative"
+                    }
+                >
+                    <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
+                        <Navbar />
+                    </div>
+                    <div>
+                        <AppRoutes />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default App;
