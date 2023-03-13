@@ -29,6 +29,7 @@ export const ContextProvider = ({ children }) => {
     const [passwordRepeat, setPasswordRepeat] = useState("");
     const [user, setUser] = useState("");
     const [currentMode, setCurrentMode] = useState("light");
+    const [loginError, setLoginError] = useState("");
 
     const setMode = () => {
         localStorage.setItem(
@@ -110,6 +111,7 @@ export const ContextProvider = ({ children }) => {
                 );
             })
             .catch((error) => {
+                setLoginError(error);
                 console.log(error);
             });
     };
@@ -146,6 +148,8 @@ export const ContextProvider = ({ children }) => {
                 signInUser,
                 currentMode,
                 setMode,
+                loginError,
+                setLoginError,
             }}
         >
             {children}

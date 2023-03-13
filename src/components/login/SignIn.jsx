@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
+import { Error } from "../";
+
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useStateContext } from "../../contexts/ContextProvider";
 
 const SignIn = () => {
-    const { signInUser, email, setEmail, password, setPassword } =
+    const { signInUser, email, setEmail, password, setPassword, loginError } =
         useStateContext();
 
     const [inputType, setInputType] = useState(false);
@@ -31,7 +33,7 @@ const SignIn = () => {
                     </h1>
 
                     <input
-                        type="email"
+                        type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email"
@@ -52,6 +54,7 @@ const SignIn = () => {
                             {inputType ? <AiFillEyeInvisible /> : <AiFillEye />}
                         </span>
                     </label>
+                    <span>Recuperar Senha</span>
 
                     <button
                         type="submit"
@@ -70,6 +73,7 @@ const SignIn = () => {
                     </button>
                 </form>
             </div>
+            <Error />
         </div>
     );
 };

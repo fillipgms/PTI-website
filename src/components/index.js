@@ -6,3 +6,4 @@ export { default as SignIn } from "./login/SignIn";
 export { default as SignUp } from "./login/SignUp";
 export { default as ProfileLogoff } from "./ProfileLogoff";
 export { default as Loading } from "./Loading";
+export { default as Error } from "./Error";
