@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCFleiHtEc_o0jpqoW0k8cmFiIIW7aDZsY",
+    apiKey: process.env.REACT_APP_FIREBASE_KEY,
     authDomain: "pti-data.firebaseapp.com",
     projectId: "pti-data",
     storageBucket: "pti-data.appspot.com",
